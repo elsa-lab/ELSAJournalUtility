@@ -1,0 +1,37 @@
+\documentclass{article}
+
+\input{user-defined/usepackage.tex}
+\input{ELSAJournalUtility.tex}
+
+\begin{document}
+
+\begin{anonymous_cover_letter}
+    {PAPER TITLE}
+    {JOURNAL NAME}
+    {SUBMISSION ID}
+\input{contents/cover_letter.tex}
+\end{anonymous_cover_letter}
+
+\begin{cover_letter}
+    {PAPER TITLE}
+    {JOURNAL NAME}
+    {First Author, Second Author, and Others}
+    {January}{1st}{1999}
+\input{contents/cover_letter.tex}
+\end{cover_letter}
+
+\section{Minimal Working Example}
+
+\todo{} \fixgrammar{\lipsum[2][1]} \revision{\lipsum[2][2]} \addition{\lipsum[2][3]} \todotext{\lipsum[2][4]} \lipsum[2][5]
+
+\commenter{Reviewer: 1}
+
+\begin{reviewer_comment}
+\lipsum[1]
+\end{reviewer_comment}
+
+\begin{author_response}
+\lipsum[2]
+\end{author_response}
+
+\end{document}

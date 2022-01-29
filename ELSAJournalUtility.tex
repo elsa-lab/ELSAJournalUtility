@@ -1,0 +1,133 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Copyright (c) 2022 Kuan-Yu Chang
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+% 
+% The latest version of this file can be found at:
+%     https://github.com/elsa-lab/ELSAJournalUtility
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Require Packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \usepackage{tabularx}
+% \usepackage{xcolor}
+% \usepackage{changepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Cover Letter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Base
+
+\newenvironment{base_cover_letter}[2]{
+    \begin{titlepage}
+    \def\paperTitle{#1}
+    \def\journalName{#2}
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{1.5em}
+    \fontsize{10pt}{12pt}\selectfont
+    
+    \begin{center}
+        \LARGE \textbf{Cover Letter}
+    \end{center}
+    
+    \bigskip
+}{\end{titlepage}}
+
+% Anonymous
+
+\newenvironment{anonymous_cover_letter}[3]{
+    \begin{base_cover_letter}{#1}{#2}
+    \def\submissionID{#3}
+
+    Dear Editors and Reviewers,
+
+}{
+
+    Sincerely, \\
+    Authors of \submissionID{}
+    \end{base_cover_letter}
+}
+
+% Normal
+
+\newenvironment{cover_letter}[6]{
+    \begin{base_cover_letter}{#1}{#2}
+    \def\authorList{#3}
+    \def\letterMonth{#4}
+    \def\letterDay{#5}
+    \def\letterYear{6}
+    
+    \begin{table}[h]
+        \fontsize{10pt}{12pt}\selectfont
+        \begin{tabularx}{\linewidth}{lX}
+            \textbf{Authors:} \\
+                & \authorList{} \\
+            \textbf{Address:} \\
+                & Department of Computer Science, \\
+                & National Tsing Hua University, \\
+                & Hsinchu City 30013, \\
+                & Taiwan \\
+            \textbf{Phone:} \\
+                & +886-3-5731308 \\
+            \textbf{Email:} \\
+                & cylee@cs.nthu.edu.tw
+        \end{tabularx}
+    \end{table}
+    
+    \hfill \letterMonth{} \letterDay{}, \letterYear{}
+    
+    Dear Editors and Reviewers,
+
+}{
+
+    Sincerely, \\
+    \authorList{}
+    \end{base_cover_letter}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Revision Highlighting
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\AtBeginDocument{\colorlet{defaultcolor}{.}}
+\newcommand{\todocolor}{orange}
+\newcommand{\fixgrammarcolor}{brown}
+\newcommand{\revisioncolor}{red}
+\newcommand{\additioncolor}{blue}
+
+\newcommand{\fixgrammar}[1]{\color{\fixgrammarcolor} #1 \color{defaultcolor}}
+\newcommand{\revision}[1]{\color{\revisioncolor} #1 \color{defaultcolor}}
+\newcommand{\addition}[1]{\color{\additioncolor} #1 \color{defaultcolor}}
+\newcommand{\todo}{\color{\todocolor} [TODO] \color{defaultcolor}}
+\newcommand{\todotext}[1]{\color{\todocolor} [TODO] [#1] \color{defaultcolor}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Responses to Reviewers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\commenter}[1]{
+    \vspace{2em}
+    \setlength{\parskip}{0pt}
+    \textbf{\large #1}
+    \vspace{.2em}
+    \hrule{}}
+
+\newenvironment{reviewer_comment}{
+    \vspace{1em}
+    \setlength{\parskip}{.3em}
+    \textbf{\textit{\underline{Comments to the Author:}}}
+    \begin{adjustwidth}{1cm}{}
+    \bfseries\itshape
+}{
+    \end{adjustwidth}
+}
+
+\newenvironment{author_response}{
+    \vspace{1em}
+    \textbf{Response:}}{}
