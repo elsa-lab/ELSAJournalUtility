@@ -4,25 +4,22 @@
 \input{ELSAJournalUtility.tex}
 
 % uncomment to disable highlighting
-% \renewcommand{\todocolor}{defaultcolor}
-% \renewcommand{\additioncolor}{defaultcolor}
-% \renewcommand{\fixgrammarcolor}{defaultcolor}
-% \renewcommand{\revisioncolor}{defaultcolor}
+% \nohighlight
 
 \begin{document}
 
 \begin{anonymous_cover_letter}
-    {PAPER TITLE}
-    {JOURNAL NAME}
+    {PAPER TITLE}   % defined as \paperTitle
+    {JOURNAL NAME}  % defined as \journalName
     {SUBMISSION ID}
 \input{contents/cover_letter.tex}
 \end{anonymous_cover_letter}
 
 \begin{cover_letter}
-    {PAPER TITLE}
-    {JOURNAL NAME}
+    {PAPER TITLE}   % defined as \paperTitle
+    {JOURNAL NAME}  % defined as \journalName
     {First Author, Second Author, and Others}
-    {12}{31}{1999} % MMDDYYYY
+    {12}{31}{1999}  % formatted as MMDDYYYY
 \input{contents/cover_letter.tex}
 \end{cover_letter}
 
@@ -47,6 +44,14 @@ The following sentences are colored \additioncolor{}.
 
 \begin{author_response}
 \lipsum[1][6-10]
+\end{author_response}
+
+\begin{reviewer_comment}
+\lipsum[2][1-5]
+\end{reviewer_comment}
+
+\begin{author_response}
+\lipsum[2][6-10]
 \end{author_response}
 
 \end{document}

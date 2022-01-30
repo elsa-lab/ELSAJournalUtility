@@ -14,10 +14,10 @@
 % Require Packages
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% \usepackage{changepage}
-% \usepackage{datetime}
-% \usepackage{tabularx}
-% \usepackage{xcolor}
+\usepackage{changepage}
+\usepackage{datetime}
+\usepackage{tabularx}
+\usepackage{xcolor}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Cover Letter
@@ -25,10 +25,11 @@
 
 % Base
 
-\newenvironment{base_cover_letter}[2]{
+\newenvironment{base_cover_letter}[3]{
     \begin{titlepage}
     \def\paperTitle{#1}
     \def\journalName{#2}
+    \def\authorName{#3}
     \setlength{\parindent}{0pt}
     \setlength{\parskip}{1.5em}
     \fontsize{10pt}{12pt}\selectfont
@@ -38,35 +39,34 @@
     \end{center}
     
     \bigskip
-}{\end{titlepage}}
+}{
+
+    Sincerely, \\
+    \authorName{}
+    \end{titlepage}
+}
 
 % Anonymous
 
 \newenvironment{anonymous_cover_letter}[3]{
     \begin{base_cover_letter}{#1}{#2}
-    \def\submissionID{#3}
+        {Authors of #3}
 
     Dear Editors and Reviewers,
 
-}{
-
-    Sincerely, \\
-    Authors of \submissionID{}
-    \end{base_cover_letter}
-}
+}{\end{base_cover_letter}}
 
 % Normal
 
 \newenvironment{cover_letter}[6]{
-    \begin{base_cover_letter}{#1}{#2}
-    \def\authorList{#3}
+    \begin{base_cover_letter}{#1}{#2}{#3}
     \newdate{letterDate}{#5}{#4}{#6}
     
     \begin{table}[h]
         \fontsize{10pt}{12pt}\selectfont
         \begin{tabularx}{\linewidth}{lX}
             \textbf{Authors:} \\
-                & \authorList{} \\
+                & \authorName{} \\
             \textbf{Address:} \\
                 & Department of Computer Science, \\
                 & National Tsing Hua University, \\
@@ -83,16 +83,13 @@
     
     Dear Editors and Reviewers,
 
-}{
-
-    Sincerely, \\
-    \authorList{}
-    \end{base_cover_letter}
-}
+}{\end{base_cover_letter}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Revision Highlighting
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Color definition
 
 \AtBeginDocument{\colorlet{defaultcolor}{.}}
 \newcommand{\todocolor}{orange}
@@ -100,28 +97,44 @@
 \newcommand{\revisioncolor}{red}
 \newcommand{\additioncolor}{blue}
 
-\newcommand{\fixgrammar}[1]{\color{\fixgrammarcolor} #1 \color{defaultcolor}}
-\newcommand{\revision}[1]{\color{\revisioncolor} #1 \color{defaultcolor}}
-\newcommand{\addition}[1]{\color{\additioncolor} #1 \color{defaultcolor}}
-\newcommand{\todo}{\color{\todocolor} [TODO] \color{defaultcolor}}
-\newcommand{\todotext}[1]{\color{\todocolor} [TODO] [#1] \color{defaultcolor}}
+% Commands to enable highlighting
+
+\newcommand{\todotext}[1]{
+    \color{\todocolor} [TODO] [#1] \color{defaultcolor}}
+\newcommand{\todo}{
+    \color{\todocolor} [TODO] \color{defaultcolor}}
+\newcommand{\fixgrammar}[1]{
+    \color{\fixgrammarcolor} #1 \color{defaultcolor}}
+\newcommand{\revision}[1]{
+    \color{\revisioncolor} #1 \color{defaultcolor}}
+\newcommand{\addition}[1]{
+    \color{\additioncolor} #1 \color{defaultcolor}}
+
+% Command to disable all highlighting
+
+\newcommand{\nohighlight}{
+    \renewcommand{\todocolor}{defaultcolor}
+    \renewcommand{\additioncolor}{defaultcolor}
+    \renewcommand{\fixgrammarcolor}{defaultcolor}
+    \renewcommand{\revisioncolor}{defaultcolor}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Responses to Reviewers
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\commenter}[1]{
-    \section*{\underline{\makebox[\textwidth][l]{#1}}}}
+    \section*{\underline{\makebox[\textwidth][l]{\Large #1}}}}
 
 \newenvironment{reviewer_comment}{
-    \subsubsection*{\textbf{\textit{\underline{Comments to the Author:}}}}
+    \bigskip
+    \subsubsection*{
+        \textbf{\textit{\underline{Comments to the Author}}}}
     \begin{adjustwidth}{1cm}{}
     \bfseries\itshape
-}{
-    \end{adjustwidth}
-}
+}{\end{adjustwidth}}
 
 \newenvironment{author_response}{
-    \vspace{1em}
+    \bigskip
     \textbf{Response:}}{}
 
