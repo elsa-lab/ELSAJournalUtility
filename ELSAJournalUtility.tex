@@ -14,9 +14,10 @@
 % Require Packages
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% \usepackage{changepage}
+% \usepackage{datetime}
 % \usepackage{tabularx}
 % \usepackage{xcolor}
-% \usepackage{changepage}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Cover Letter
@@ -59,9 +60,7 @@
 \newenvironment{cover_letter}[6]{
     \begin{base_cover_letter}{#1}{#2}
     \def\authorList{#3}
-    \def\letterMonth{#4}
-    \def\letterDay{#5}
-    \def\letterYear{#6}
+    \newdate{letterDate}{#5}{#4}{#6}
     
     \begin{table}[h]
         \fontsize{10pt}{12pt}\selectfont
@@ -80,7 +79,7 @@
         \end{tabularx}
     \end{table}
     
-    \hfill \letterMonth{} \letterDay{}, \letterYear{}
+    \hfill \usdate\displaydate{letterDate}
     
     Dear Editors and Reviewers,
 
@@ -112,16 +111,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\commenter}[1]{
-    \vspace{2em}
-    \setlength{\parskip}{0pt}
-    \textbf{\large #1}
-    \vspace{.2em}
-    \hrule{}}
+    \section*{\underline{\makebox[\textwidth][l]{#1}}}}
 
 \newenvironment{reviewer_comment}{
-    \vspace{1em}
-    \setlength{\parskip}{.3em}
-    \textbf{\textit{\underline{Comments to the Author:}}}
+    \subsubsection*{\textbf{\textit{\underline{Comments to the Author:}}}}
     \begin{adjustwidth}{1cm}{}
     \bfseries\itshape
 }{
@@ -131,3 +124,4 @@
 \newenvironment{author_response}{
     \vspace{1em}
     \textbf{Response:}}{}
+

@@ -3,6 +3,12 @@
 \input{user-defined/usepackage.tex}
 \input{ELSAJournalUtility.tex}
 
+% uncomment to disable highlighting
+% \renewcommand{\todocolor}{defaultcolor}
+% \renewcommand{\additioncolor}{defaultcolor}
+% \renewcommand{\fixgrammarcolor}{defaultcolor}
+% \renewcommand{\revisioncolor}{defaultcolor}
+
 \begin{document}
 
 \begin{anonymous_cover_letter}
@@ -16,22 +22,32 @@
     {PAPER TITLE}
     {JOURNAL NAME}
     {First Author, Second Author, and Others}
-    {January}{1st}{1999}
+    {12}{31}{1999} % MMDDYYYY
 \input{contents/cover_letter.tex}
 \end{cover_letter}
 
 \section{Minimal Working Example}
 
-\todo{} \fixgrammar{\lipsum[2][1]} \revision{\lipsum[2][2]} \addition{\lipsum[2][3]} \todotext{\lipsum[2][4]} \lipsum[2][5]
+\todo{} This is a TODO tag in \todocolor{}. \todotext{\lipsum[1][1]}
 
-\commenter{Reviewer: 1}
+The following sentences are colored \fixgrammarcolor{}.
+\fixgrammar{\lipsum[1][1-5]}
+
+The following sentences are colored \revisioncolor{}.
+\revision{\lipsum[1][1-5]}
+
+The following sentences are colored \additioncolor{}.
+\addition{\lipsum[1][1-5]}
+
+\commenter{Reviewer: X}
 
 \begin{reviewer_comment}
-\lipsum[1]
+\lipsum[1][1-5]
 \end{reviewer_comment}
 
 \begin{author_response}
-\lipsum[2]
+\lipsum[1][6-10]
 \end{author_response}
 
 \end{document}
+
