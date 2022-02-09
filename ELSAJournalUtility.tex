@@ -11,7 +11,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Require Packages
+% Required Packages
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{changepage}
@@ -33,14 +33,11 @@
     \setlength{\parindent}{0pt}
     \setlength{\parskip}{1.5em}
     \fontsize{10pt}{12pt}\selectfont
-    
     \begin{center}
         \LARGE \textbf{Cover Letter}
     \end{center}
-    
     \bigskip
 }{
-
     Sincerely, \\
     \authorName{}
     \end{titlepage}
@@ -51,17 +48,14 @@
 \newenvironment{anonymous_cover_letter}[3]{
     \begin{base_cover_letter}{#1}{#2}
         {Authors of #3}
-
     Dear Editors and Reviewers,
-
 }{\end{base_cover_letter}}
 
 % Normal
 
 \newenvironment{cover_letter}[6]{
     \begin{base_cover_letter}{#1}{#2}{#3}
-    \newdate{letterDate}{#5}{#4}{#6}
-    
+        \newdate{letterDate}{#5}{#4}{#6}
     \begin{table}[h]
         \fontsize{10pt}{12pt}\selectfont
         \begin{tabularx}{\linewidth}{lX}
@@ -78,11 +72,9 @@
                 & cylee@cs.nthu.edu.tw
         \end{tabularx}
     \end{table}
-    
-    \hfill \usdate\displaydate{letterDate}
+    \hfill\usdate\displaydate{letterDate}
     
     Dear Editors and Reviewers,
-
 }{\end{base_cover_letter}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -129,9 +121,9 @@
 \newenvironment{reviewer_comment}{
     \bigskip
     \subsubsection*{%
-        \textbf{\textit{\underline{Comments to the Author}}}}
+        \textbf{\textit{\underline{Comments to the Author(s)}}}}
     \begin{adjustwidth}{1cm}{}
-    \bfseries\itshape
+    \smallskip\bfseries\itshape
 }{\end{adjustwidth}}
 
 \newenvironment{author_response}{
